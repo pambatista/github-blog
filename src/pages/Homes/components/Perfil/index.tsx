@@ -11,9 +11,8 @@ import {
   PerfilContent,
   PerfilTitle,
 } from "./styles";
-import { Link } from "react-router-dom";
 import { api } from "../../../../lib/axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState, memo } from "react";
 
 type User = {
   login: string;
@@ -22,21 +21,12 @@ type User = {
   followers: number;
   url: string;
 };
-
-export function Perfil() {
+function PerfilComponent() {
   const [user, setUser] = useState<User>();
 
-  async function fetchPerfil() {
-    // const response = await api.get("/users/pambatista")
-    const response = {
-      data: {
-        login: "pambatista",
-        name: "Pamela Batista",
-        bio: "Desenvolvedora ",
-        followers: 24,
-        html_url: "https://github.com/pambatista",
-      },
-    };
+  const fetchPerfil = useCallback(async () => {
+    const response = await api.get("/users/pambatista");
+
     setUser({
       login: response.data.login,
       name: response.data.name,
@@ -44,23 +34,23 @@ export function Perfil() {
       followers: response.data.followers,
       url: response.data.html_url,
     });
-  }
+  }, []);
 
   useEffect(() => {
     fetchPerfil();
-  }, []);
+  }, [fetchPerfil]);
 
   return (
     <PerfilContainer>
-      <img src="https://github.com/pambatista.png " alt="" />
+      <img src="https://github.com/pambatista.png" alt="" />
 
       <PerfilContent>
         <PerfilTitle>
           <h1>{user?.name}</h1>
-          <Link to={user?.url}>
+          <a href={user?.url} target="_blank">
             Github
             <ArrowSquareOut size={18} />
-          </Link>
+          </a>
         </PerfilTitle>
         <p>{user?.bio}</p>
         <LinksContent>
@@ -81,3 +71,5 @@ export function Perfil() {
     </PerfilContainer>
   );
 }
+
+export const Perfil = memo(PerfilComponent);

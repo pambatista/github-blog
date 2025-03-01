@@ -32,19 +32,19 @@ export const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
 
+  gap: 1rem;
   & > strong {
     color: ${(props) => props.theme["gray-50"]};
     font-family: Nunito;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 160%;
   }
 
   & > span {
     color: ${(props) => props.theme["gray-300"]};
     font-family: Nunito;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-style: normal;
     font-weight: 400;
     line-height: 160%;

@@ -6,6 +6,10 @@ export const SearchContainer = styled.div`
   gap: 0.75rem;
   margin-top: 4.5rem;
   margin-bottom: 3rem;
+
+  form {
+    width: 100%;
+  }
 `;
 
 export const SearchHeader = styled.header`
@@ -33,6 +37,7 @@ export const SearchHeader = styled.header`
 `;
 
 export const SearchInput = styled.input`
+  width: 100%;
   padding: 0.75rem 1rem;
   align-items: center;
   gap: 0.5rem;

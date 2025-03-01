@@ -15,4 +15,8 @@ export const PostContent = styled.div`
   font-weight: 700;
   line-height: 160%;
   color: ${(props) => props.theme["gray-200"]};
+
+  h1 {
+    text-align: center;
+  }
 `;

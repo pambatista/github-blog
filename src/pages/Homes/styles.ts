@@ -8,6 +8,7 @@ export const HomeContainer = styled.div`
 `;
 
 export const HomeList = styled.div`
+  max-width: 1024px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;

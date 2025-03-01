@@ -9,11 +9,20 @@ import {
   ArrowSquareOut,
   BuildingOffice,
   CaretLeft,
+  ChatCircle,
   GithubLogo,
   Users,
 } from "@phosphor-icons/react";
 
-export function Header() {
+interface HeaderProps {
+  title: string;
+  user: {
+    login: string;
+  };
+  html_url: string;
+  comments: number;
+}
+export function Header({ title, user, html_url, comments }: HeaderProps) {
   return (
     <HeaderContainer>
       <HeaderActions>
@@ -22,25 +31,25 @@ export function Header() {
           Voltar
         </Link>
 
-        <a>
+        <a href={html_url} target="_blank">
           ver no github
           <ArrowSquareOut size={18} />
         </a>
       </HeaderActions>
 
-      <h1>Titulo do post</h1>
+      <h1>{title}</h1>
       <LinksContent>
         <LinkInfo>
           <GithubLogo size={18} />
-          pambatista
+          {user.login}
         </LinkInfo>
         <LinkInfo>
           <BuildingOffice size={18} />
           Sixchains
         </LinkInfo>
         <LinkInfo>
-          <Users size={18} />
-          10 seguidores
+          <ChatCircle size={18} />
+          {comments} comentários
         </LinkInfo>
       </LinksContent>
     </HeaderContainer>
